@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>トップページ | 業務用アプリケーション</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-2">
+    <!-- ヘッダー部分 -->
+    <header class="mb-4 bg-light p-3 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mb-0"><a href="../index.html" th:href="@{/}" class="text-dark text-decoration-none">業務管理アプリケーション</a></h1>
+            <a href="#" th:href="@{/logout}" th:attr="data-method='post'" class="btn btn-dark" style="font-size: 18px;">ログアウト</a>
+        </div>
+    </header>
+    <!-- ヘッダー部分の最後 -->
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2 class="text-center">ユーザー一覧</h2>
+            <a href="../index.html" th:href="@{/}" class="btn btn-primary">トップページ</a>
+            <a href="../creationForm.html" th:href="@{/users/creationForm}" class="btn btn-success">作成</a>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ユーザー名</th>
+                    <th>権限</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${userList}">
+                    <td th:text="${user.username}"></td>
+                    <td th:text="${user.authority}">(authority)</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

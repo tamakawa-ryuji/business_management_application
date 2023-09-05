@@ -1,5 +1,6 @@
 package com.example.practice.domain.order;
 
+import com.example.practice.domain.order.OrderEntity;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Insert;
@@ -7,7 +8,6 @@ import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.Delete;
 import java.util.List;
 import com.example.practice.web.order.OrderForm;
-import org.apache.ibatis.annotations.Options;
 
 @Mapper
 public interface OrderRepository {

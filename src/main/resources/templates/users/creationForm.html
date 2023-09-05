@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー作成 |  業務用アプリケーション</title>
+    <!-- Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <!-- ヘッダー部分 -->
+    <header class="mb-4 bg-light p-3 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mb-0"><a href="../index.html" th:href="@{/}" class="text-dark text-decoration-none">業務管理アプリケーション</a></h1>
+            <a href="#" th:href="@{/logout}" th:attr="data-method='post'" class="btn btn-dark" style="font-size: 18px;">ログアウト</a>
+        </div>
+    </header>
+    <!-- ユーザー作成フォーム -->
+    <form action="#" th:action="@{/users}" method="post" th:object="${userForm}"  style="width: 500px; margin: 0 auto;">
+        <!-- ユーザー名入力 -->
+        <div class="mt-3">
+            <label for="usernameInput" class="form-label">ユーザー名</label>
+            <input type="text" id="usernameInput" class="form-control" th:field="*{username}">
+            <!-- ユーザー名のバリデーションエラー表示 -->
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+        </div>
+        <!-- パスワード入力 -->
+        <div class="mt-3">
+            <label for="passwordInput" class="form-label">パスワード</label>
+            <input type="password" id="passwordInput" class="form-control" th:field="*{password}">
+            <!-- パスワードのバリデーションエラー表示 -->
+            <small class="form-text text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+        </div>
+        <!-- 権限ラジオボタン -->
+        <div class="mt-3">
+            <label class="form-label" for="authorityRadio">権限</label>
+            <div id="authorityRadio">
+                <!-- ADMIN権限選択 -->
+                <div class="form-check" th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
+                    <input class="form-check-input" type="radio" id="authorityAdminRadio"
+                           th:field="*{authority}" value="ADMIN"
+                           th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
+                    <label class="form-check-label" for="authorityAdminRadio">ADMIN</label>
+                </div>
+                <!-- USER権限選択 -->
+                <div class="form-check" th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
+                    <input class="form-check-input" type="radio" id="authorityUserRadio"
+                           th:field="*{authority}" value="USER" checked="${userForm.authority == 'USER'}"
+                           th:classappend="${#fields.hasErrors('authority')} ? is-invalid">
+                    <label class="form-check-label" for="authorityUserRadio">USER</label>
+                </div>
+                <!-- 権限のバリデーションエラー表示 -->
+                <p class="invalid-feedback" th:if="${#fields.hasErrors('authority')}" th:errors="*{authority}">(errors)</p>
+            </div>
+        </div>
+        <!-- 作成ボタンと取消ボタン -->
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">作成</button>
+            <a href="./list.html" th:href="@{/users}" class="btn btn-secondary">取消</a>
+        </div>
+    </form>
+    <!-- エラーメッセージ表示 -->
+    <div th:if="${param.error}" class="alert alert-danger mt-3" style="width: 500px; margin: 0 auto;">
+        ユーザー名はすでに使われています。
+    </div>
+</div>
+</body>
+</html>

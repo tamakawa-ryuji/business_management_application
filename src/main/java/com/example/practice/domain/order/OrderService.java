@@ -1,12 +1,13 @@
 package com.example.practice.domain.order;
 
+import com.example.practice.domain.order.OrderEntity;
+import com.example.practice.domain.order.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import com.example.practice.web.order.OrderForm;
 import java.util.List;
 import org.springframework.ui.Model;
 import org.springframework.transaction.annotation.Transactional;
-import java.lang.IllegalAccessException;
 
 @Service
 @RequiredArgsConstructor

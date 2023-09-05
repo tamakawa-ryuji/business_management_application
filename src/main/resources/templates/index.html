@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,9 +10,17 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1 class="mb-3"><a href="../index.html" th:href="@{/}" style="color: inherit; text-decoration: none;">業務管理アプリケーション</a></h1>
+    <!-- ヘッダー部分 -->
+    <header class="mb-4 bg-light p-3 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mb-0"><a href="../index.html" th:href="@{/}" class="text-dark text-decoration-none">業務管理アプリケーション</a></h1>
+            <a href="#" th:href="@{/logout}" th:attr="data-method='post'" class="btn btn-dark" style="font-size: 18px;">ログアウト</a>
+        </div>
+    </header>
+    <!-- ヘッダー部分の最後 -->
     <ul class="list-group">
         <li class="list-group-item"><a href="./order/list.html" th:href="@{/orders}" class="btn btn-primary">注文リスト一覧</a></li>
+        <li class="list-group-item" sec:authorize="hasAuthority('ADMIN')"><a href="./users/list.html"  th:href="@{/users}" class="btn btn-primary">ユーザー一覧</a></li>
     </ul>
 </div>
 </body>

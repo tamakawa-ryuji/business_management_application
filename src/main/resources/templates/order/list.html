@@ -9,7 +9,14 @@
 </head>
 <body>
 <div class="container mt-4">
-    <h1 class="mb-3"><a href="../index.html" th:href="@{/}" style="color: inherit; text-decoration: none;">業務管理アプリケーション</a></h1>
+    <!-- ヘッダー部分 -->
+    <header class="mb-4 bg-light p-3 rounded">
+        <div class="d-flex justify-content-between align-items-center">
+            <h1 class="mb-0"><a href="../index.html" th:href="@{/}" class="text-dark text-decoration-none">業務管理アプリケーション</a></h1>
+            <a href="#" th:href="@{/logout}" th:attr="data-method='post'" class="btn btn-dark" style="font-size: 18px;">ログアウト</a>
+        </div>
+    </header>
+    <!-- ヘッダー部分の最後 -->
     <h2 class="text-center">注文リスト</h2>
     <a href="../index.html" th:href="@{/}" class="btn btn-primary">トップページ</a>
     <a href="./form.html" th:href="@{/orders/form}" class="btn btn-success">作成</a>
